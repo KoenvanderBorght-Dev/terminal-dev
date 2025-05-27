@@ -10,3 +10,6 @@ min_version = "0.59.1"
 [author]
     name = "Koen van der Borght"
     homepage = "koenvdborght.nl"
+
+[params]
+enableTaglineTypingEffect = true

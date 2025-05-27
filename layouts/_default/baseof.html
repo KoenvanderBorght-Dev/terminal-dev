@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Site.Language.Lang | default "en" }}">
+<html lang="{{ .Site.Language.Lang | default " en" }}">
 <head>
     {{ partial "head.html" . }}
 </head>
@@ -11,31 +11,31 @@
             <div class="terminal-button btn-maximize"></div>
             <div class="terminal-title">{{ .Site.Title | lower | replaceRE "\\s+" "" }}: ~/{{ .Section | default "home" }}</div>
         </div>
-        
+
         {{ partial "header.html" . }}
-        
+
         <main class="main-content">
             {{ block "main" . }}{{ end }}
-            
-        {{ if .IsHome }}
+
+            {{ if .IsHome }}
             {{ partial "status.html" . }}
-        {{ end }}
+            {{ end }}
         </main>
-        
-        
+
+
         {{ partial "footer.html" . }}
     </div>
-    
+
+    {{ if .Site.Params.enableTaglineTypingEffect }}
     <script>
-        // Add some interactivity for the terminal feel
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Add typing effect to tagline
             const tagline = document.querySelector('.tagline');
             if (tagline) {
                 const text = tagline.textContent;
                 tagline.textContent = '';
                 tagline.classList.add('typing-effect');
-                
+
                 let i = 0;
                 const typeWriter = () => {
                     if (i < text.length) {
@@ -48,5 +48,6 @@
             }
         });
     </script>
+    {{ end }}
 </body>
 </html>
