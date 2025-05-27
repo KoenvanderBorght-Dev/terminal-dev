@@ -1,0 +1,67 @@
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3 class="footer-title">connect_with_me</h3>
+            <div class="social-links">
+                {{ if .Site.Params.github }}
+                <a href="{{ .Site.Params.github }}" class="social-link" target="_blank" rel="noopener">
+                    <span class="social-icon">→</span>
+                    <span>GitHub</span>
+                </a>
+                {{ end }}
+                {{ if .Site.Params.linkedin }}
+                <a href="{{ .Site.Params.linkedin }}" class="social-link" target="_blank" rel="noopener">
+                    <span class="social-icon">→</span>
+                    <span>LinkedIn</span>
+                </a>
+                {{ end }}
+                {{ if .Site.Params.twitter }}
+                <a href="{{ .Site.Params.twitter }}" class="social-link" target="_blank" rel="noopener">
+                    <span class="social-icon">→</span>
+                    <span>Twitter</span>
+                </a>
+                {{ end }}
+                {{ if .Site.Params.email }}
+                <a href="mailto:{{ .Site.Params.email }}" class="social-link">
+                    <span class="social-icon">→</span>
+                    <span>Email</span>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">quick_access</h3>
+            <div class="footer-links">
+                <a href="{{ "posts" | relURL }}" class="footer-link">~/blog</a>
+                <a href="{{ "projects" | relURL }}" class="footer-link">~/projects</a>
+                <a href="{{ "about" | relURL }}" class="footer-link">~/about</a>
+                <a href="{{ "index.xml" | relURL }}" class="footer-link">~/rss</a>
+            </div>
+        </div>
+        
+        <div class="footer-section">
+            <h3 class="footer-title">system_info</h3>
+            <div class="system-info">
+                <div class="info-line">
+                    <span class="info-label">Built with:</span>
+                    <span class="info-value">Hugo {{ hugo.Version }}</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Theme:</span>
+                    <span class="info-value">Terminal Dev</span>
+                </div>
+                <div class="info-line">
+                    <span class="info-label">Last build:</span>
+                    <span class="info-value">{{ now.Format "2006-01-02 15:04" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <div class="copyright">
+            <span>© {{ now.Year }} {{ .Site.Params.author | default .Site.Title }}. All rights reserved.</span>
+        </div>
+    </div>
+</footer>

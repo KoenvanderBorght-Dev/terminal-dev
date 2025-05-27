@@ -1,0 +1,26 @@
+<section class="section">
+    <h2 class="section-title">system_status</h2>
+    <div class="status-grid">
+        <div class="status-item">
+            <div class="status-icon"></div>
+            <div class="status-text">Currently: {{ .Site.Params.status.currently | default "Coding" }}</div>
+        </div>
+        <div class="status-item">
+            <div class="status-icon"></div>
+            <div class="status-text">
+                Coffee level: 
+                {{ $coffeeLevel := .Site.Params.status.coffee_level | default 75 }}
+                {{ $bars := div $coffeeLevel 10 }}
+                {{ range seq $bars }}█{{ end }}{{ range seq (sub 10 $bars) }}░{{ end }} {{ $coffeeLevel }}%
+            </div>
+        </div>
+        <div class="status-item">
+            <div class="status-icon"></div>
+            <div class="status-text">Available for: {{ .Site.Params.status.available_for | default "Projects" }}</div>
+        </div>
+        <div class="status-item">
+            <div class="status-icon"></div>
+            <div class="status-text">Location: {{ .Site.Params.status.location | default "/dev/home" }}</div>
+        </div>
+    </div>
+</section>

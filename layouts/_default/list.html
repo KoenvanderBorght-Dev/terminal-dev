@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="section">
+    <h2 class="section-title">{{ .Title | lower }}{{ if eq .Section "posts" }}_archive{{ end }}</h2>
+    
+    {{ if .Content }}
+    <div class="section-content">
+        {{ .Content }}
+    </div>
+    {{ end }}
+    
+    {{ if .Pages }}
+    <div class="posts-grid">
+        {{ range .Pages.ByDate.Reverse }}
+            {{ partial "summary.html" . }}
+        {{ end }}
+    </div>
+    {{ else }}
+    <div class="empty-state">
+        <p>No {{ .Section }} found. Check back later!</p>
+    </div>
+    {{ end }}
+    
+    <!-- Pagination -->
+    {{ if .Paginator }}
+    {{ if gt .Paginator.TotalPages 1 }}
+    <nav class="pagination">
+        {{ if .Paginator.HasPrev }}
+            <a href="{{ .Paginator.Prev.URL }}" class="pagination-link prev">← Previous</a>
+        {{ end }}
+        
+        <span class="pagination-info">
+            Page {{ .Paginator.PageNumber }} of {{ .Paginator.TotalPages }}
+        </span>
+        
+        {{ if .Paginator.HasNext }}
+            <a href="{{ .Paginator.Next.URL }}" class="pagination-link next">Next →</a>
+        {{ end }}
+    </nav>
+    {{ end }}
+    {{ end }}
+</section>
+{{ end }}

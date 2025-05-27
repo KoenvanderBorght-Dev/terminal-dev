@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="section">
+    <h2 class="section-title">recent_posts</h2>
+    <div class="posts-grid">
+        {{ $posts := where .Site.RegularPages "Section" "posts" }}
+        {{ range first 6 $posts.ByDate.Reverse }}
+            {{ partial "_default/summary.html" . }}
+        {{ end }}
+        
+        {{ if eq (len $posts) 0 }}
+        <!-- Sample posts when no content exists -->
+        <article class="post-card">
+            <div class="post-meta">
+                <span>{{ now.Format "2006-01-02" }}</span>
+                <span>•</span>
+                <span>5 min read</span>
+            </div>
+            <h3 class="post-title">
+                <a href="#">Welcome to Your Terminal Blog</a>
+            </h3>
+            <p class="post-excerpt">
+                Your new Hugo terminal-themed blog is ready! Start writing your first post by creating content in the posts directory...
+            </p>
+            <div class="post-tags">
+                <span class="tag">hugo</span>
+                <span class="tag">blog</span>
+                <span class="tag">terminal</span>
+            </div>
+        </article>
+        {{ end }}
+    </div>
+    
+    {{ if gt (len $posts) 6 }}
+    <div class="view-all">
+        <a href="{{ "posts" | relURL }}" class="view-all-link">
+            <span>View all posts</span>
+            <span class="arrow">→</span>
+        </a>
+    </div>
+    {{ end }}
+</section>
+{{ end }}

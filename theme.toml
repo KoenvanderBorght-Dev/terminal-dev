@@ -1,0 +1,12 @@
+name = "Terminal Dev"
+license = "MIT"
+licenselink = "https://github.com/KvanderBorght-Dev/terminal-dev/blob/main/LICENSE"
+description = "A terminal-inspired Hugo theme for developers"
+homepage = "https://github.com/KvanderBorght-Dev/terminal-dev"
+tags = ["blog", "developer", "terminal", "dark", "responsive", "modern"]
+features = ["responsive", "dark-mode", "syntax-highlighting", "seo-optimized"]
+min_version = "0.59.1"
+
+[author]
+    name = "Koen van der Borght"
+    homepage = "koenvdborght.nl"

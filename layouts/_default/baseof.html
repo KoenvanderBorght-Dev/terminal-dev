@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+<head>
+    {{ partial "head.html" . }}
+</head>
+<body>
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-button btn-close"></div>
+            <div class="terminal-button btn-minimize"></div>
+            <div class="terminal-button btn-maximize"></div>
+            <div class="terminal-title">{{ .Site.Title | lower | replaceRE "\\s+" "" }}: ~/{{ .Section | default "home" }}</div>
+        </div>
+        
+        {{ partial "header.html" . }}
+        
+        <main class="main-content">
+            {{ block "main" . }}{{ end }}
+            
+        {{ if .IsHome }}
+            {{ partial "status.html" . }}
+        {{ end }}
+        </main>
+        
+        
+        {{ partial "footer.html" . }}
+    </div>
+    
+    <script>
+        // Add some interactivity for the terminal feel
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add typing effect to tagline
+            const tagline = document.querySelector('.tagline');
+            if (tagline) {
+                const text = tagline.textContent;
+                tagline.textContent = '';
+                tagline.classList.add('typing-effect');
+                
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < text.length) {
+                        tagline.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                setTimeout(typeWriter, 500);
+            }
+        });
+    </script>
+</body>
+</html>
