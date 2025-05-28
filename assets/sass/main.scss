@@ -1,29 +1,46 @@
-// Terminal Developer Blog Theme - SCSS Version
-// This is an alternative to the CSS version with better organization
-
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+$bg-primary: #0a0a0a;
+$bg-secondary: #111111;
+$bg-card: #1a1a1a;
+$text-primary: #e4e4e7;
+$text-secondary: #a1a1aa;
+$accent: #60a5fa;
+$accent-dark: #3b82f6;
+$border: #27272a;
+$terminal-green: #22c55e;
+$terminal-yellow: #eab308;
+$terminal-red: #ef4444;
+$h2-accent: var(--accent, #4a9eff);
+$h2-border: #2d3748;
+$h3-accent: #68d391;
+$p-color: var(--text-primary, #e2e8f0);
+$code-bg: #2d3748;
+$code-color: var(--text-primary, #e2e8f0);
+$pre-bg: #1a202c;
+$pre-border: #4a5568;
 
-// Variables
+$post-good: #68d391;
+$post-poor: #fc8181;
+$post-example: #63b3ed;
+
 :root {
-    --bg-primary: #0a0a0a;
-    --bg-secondary: #111111;
-    --bg-card: #1a1a1a;
-    --text-primary: #e4e4e7;
-    --text-secondary: #a1a1aa;
-    --accent: #60a5fa;
-    --accent-dark: #3b82f6;
-    --border: #27272a;
-    --terminal-green: #22c55e;
-    --terminal-yellow: #eab308;
-    --terminal-red: #ef4444;
+    --bg-primary: #{$bg-primary};
+    --bg-secondary: #{$bg-secondary};
+    --bg-card: #{$bg-card};
+    --text-primary: #{$text-primary};
+    --text-secondary: #{$text-secondary};
+    --accent: #{$accent};
+    --accent-dark: #{$accent-dark};
+    --border: #{$border};
+    --terminal-green: #{$terminal-green};
+    --terminal-yellow: #{$terminal-yellow};
+    --terminal-red: #{$terminal-red};
 }
 
-// SCSS Variables for easier customization
 $font-mono: 'JetBrains Mono', monospace;
 $border-radius: 8px;
 $transition: all 0.3s ease;
 
-// Mixins
 @mixin flex-center {
     display: flex;
     align-items: center;
@@ -40,7 +57,7 @@ $transition: all 0.3s ease;
 @mixin hover-glow {
     position: relative;
     overflow: hidden;
-    
+
     &::before {
         content: '';
         position: absolute;
@@ -51,13 +68,12 @@ $transition: all 0.3s ease;
         background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.1), transparent);
         transition: left 0.5s;
     }
-    
+
     &:hover::before {
         left: 100%;
     }
 }
 
-// Base styles
 * {
     margin: 0;
     padding: 0;
@@ -70,8 +86,7 @@ body {
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
-    
-    // Animated background grid
+
     &::before {
         content: '';
         position: fixed;
@@ -79,7 +94,7 @@ body {
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
+        background-image:
             linear-gradient(rgba(96, 165, 250, 0.1) 1px, transparent 1px),
             linear-gradient(90deg, rgba(96, 165, 250, 0.1) 1px, transparent 1px);
         background-size: 50px 50px;
@@ -88,28 +103,54 @@ body {
     }
 }
 
-// Animations
 @keyframes grid-move {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(50px, 50px);
+    }
 }
 
 @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
 }
 
 @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
 }
 
 @keyframes typing {
-    0%, 50% { border-color: var(--accent); }
-    51%, 100% { border-color: transparent; }
+
+    0%,
+    50% {
+        border-color: var(--accent);
+    }
+
+    51%,
+    100% {
+        border-color: transparent;
+    }
 }
 
-// Terminal window
 .terminal-window {
     max-width: 1200px;
     margin: 2rem auto;
@@ -127,13 +168,21 @@ body {
     align-items: center;
     gap: 0.5rem;
     border-bottom: 1px solid var(--border);
-    
+
     .terminal-button {
-        &.btn-close { @include terminal-button(var(--terminal-red)); }
-        &.btn-minimize { @include terminal-button(var(--terminal-yellow)); }
-        &.btn-maximize { @include terminal-button(var(--terminal-green)); }
+        &.btn-close {
+            @include terminal-button(var(--terminal-red));
+        }
+
+        &.btn-minimize {
+            @include terminal-button(var(--terminal-yellow));
+        }
+
+        &.btn-maximize {
+            @include terminal-button(var(--terminal-green));
+        }
     }
-    
+
     .terminal-title {
         margin-left: 1rem;
         font-size: 0.9rem;
@@ -141,18 +190,17 @@ body {
     }
 }
 
-// Header section
 .header {
     padding: 3rem 2rem;
     text-align: center;
     position: relative;
-    
+
     .logo-container {
         @include flex-center;
         gap: 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .logo {
         width: 60px;
         height: 60px;
@@ -165,7 +213,7 @@ body {
         position: relative;
         padding-right: 15px;
         color: var(--bg-primary);
-        
+
         &::after {
             content: '_';
             color: var(--accent);
@@ -174,27 +222,27 @@ body {
             animation: blink 1.5s infinite;
         }
     }
-    
+
     .site-title {
         font-size: 2rem;
         color: var(--text-primary);
         font-weight: 500;
-        
+
         a {
             color: inherit;
             text-decoration: none;
         }
-        
+
         .accent {
             color: var(--accent);
         }
     }
-    
+
     .tagline {
         margin-top: 1rem;
         font-size: 1.1rem;
         color: var(--text-secondary);
-        
+
         &.typing-effect {
             border-right: 2px solid var(--accent);
             animation: typing 4s steps(40) infinite;
@@ -202,14 +250,13 @@ body {
     }
 }
 
-// Navigation
 .nav {
     display: flex;
     justify-content: center;
     gap: 2rem;
     margin-top: 2rem;
     padding: 0 2rem;
-    
+
     .nav-item {
         color: var(--text-secondary);
         text-decoration: none;
@@ -218,7 +265,7 @@ body {
         border-radius: 6px;
         transition: $transition;
         @include hover-glow;
-        
+
         &:hover,
         &.active {
             color: var(--accent);
@@ -227,14 +274,13 @@ body {
     }
 }
 
-// Main content
 .main-content {
     padding: 0 2rem 2rem;
 }
 
 .section {
     margin-bottom: 3rem;
-    
+
     .section-title {
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
@@ -242,7 +288,7 @@ body {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        
+
         &::before {
             content: '>';
             color: var(--terminal-green);
@@ -250,7 +296,6 @@ body {
     }
 }
 
-// Posts grid
 .posts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -265,7 +310,7 @@ body {
     transition: $transition;
     position: relative;
     overflow: hidden;
-    
+
     &::before {
         content: '';
         position: absolute;
@@ -277,16 +322,16 @@ body {
         transform: scaleX(0);
         transition: transform 0.3s ease;
     }
-    
+
     &:hover {
         transform: translateY(-5px);
         border-color: var(--accent);
-        
+
         &::before {
             transform: scaleX(1);
         }
     }
-    
+
     .post-meta {
         font-size: 0.8rem;
         color: var(--text-secondary);
@@ -295,29 +340,38 @@ body {
         align-items: center;
         gap: 1rem;
     }
-    
+
     .post-title {
         font-size: 1.2rem;
         margin-bottom: 0.5rem;
         color: var(--text-primary);
-        
+
         a {
             color: inherit;
             text-decoration: none;
             transition: color 0.3s ease;
-            
+
             &:hover {
                 color: var(--accent);
             }
         }
     }
-    
+
+    .post-subtitle {
+        font-style: italic;
+        font-size: 1.2em;
+        color: #666;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        font-weight: 300;
+    }
+
     .post-excerpt {
         color: var(--text-secondary);
         font-size: 0.9rem;
         line-height: 1.5;
     }
-    
+
     .post-tags {
         margin-top: 1rem;
         display: flex;
@@ -335,7 +389,6 @@ body {
     border: 1px solid rgba(96, 165, 250, 0.2);
 }
 
-// Status section
 .status-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -350,7 +403,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    
+
     .status-icon {
         width: 8px;
         height: 8px;
@@ -358,146 +411,288 @@ body {
         background: var(--terminal-green);
         animation: pulse 2s infinite;
     }
-    
+
     .status-text {
         font-size: 0.9rem;
     }
 }
 
-// Single post styles
 .single-post {
     max-width: 800px;
     margin: 0 auto;
-    
+
     .post-header {
         text-align: center;
         margin-bottom: 3rem;
         padding-bottom: 2rem;
         border-bottom: 1px solid var(--border);
-        
+
         .post-title {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             color: var(--text-primary);
         }
-        
+
         .post-meta {
             justify-content: center;
             margin-bottom: 1rem;
         }
-        
+
         .post-tags {
             justify-content: center;
         }
     }
-    
+
     .post-content {
-        font-size: 1rem;
-        line-height: 1.8;
-        margin-bottom: 3rem;
-        
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--accent);
-            margin: 2rem 0 1rem 0;
-            
-            &::before {
-                content: '> ';
-                color: var(--terminal-green);
-            }
-        }
-        
-        p {
-            margin-bottom: 1rem;
-        }
-        
-        code {
-            background: var(--bg-secondary);
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.9em;
-            color: var(--accent);
-        }
-        
-        pre {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: $border-radius;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border: 1px solid var(--border);
-            
-            code {
-                background: none;
-                padding: 0;
-                color: var(--text-primary);
-            }
-        }
-        
-        blockquote {
-            border-left: 3px solid var(--accent);
-            padding-left: 1rem;
-            margin: 1rem 0;
-            font-style: italic;
-            color: var(--text-secondary);
-        }
-        
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            
-            &:hover {
-                text-decoration: underline;
-            }
-        }
-        
-        ul, ol {
-            padding-left: 2rem;
-            margin: 1rem 0;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: $border-radius;
-            margin: 1rem 0;
-        }
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  line-height: 1.7;
+  font-size: 16px;
+
+  h2 {
+    color: $h2-accent;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid $h2-border;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: $h2-accent;
     }
+  }
+
+  h3 {
+    color: $h3-accent;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  // Paragraphs
+  p {
+    margin-bottom: 1.5rem;
+    color: $p-color;
+
+    strong {
+      display: block;
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.1em;
+      font-weight: 600;
+
+      // Example text coloring (see note below)
+      &:contains("Good Example") {
+        color: $post-good;
+      }
+      &:contains("Poor Example") {
+        color: $post-poor;
+      }
+      &:contains("Example") {
+        color: $post-example;
+      }
+    }
+  }
+
+  // Code blocks
+  pre {
+    background: $pre-bg;
+    border: 1px solid $pre-border;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+    font-family: $font-mono, 'Fira Code', 'Monaco', monospace;
+    font-size: 0.9em;
+    line-height: 1.6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    code {
+      background: transparent;
+      padding: 0;
+    }
+  }
+  code {
+    background: $code-bg;
+    color: $code-color;
+    padding: 0.25em 0.5em;
+    border-radius: 6px;
+    font-family: $font-mono, 'Fira Code', 'Monaco', monospace;
+    font-size: 0.85em;
+  }
+
+  // Example visual distinction
+  p:has(strong:contains("Good Example")) + pre {
+    border-left: 4px solid $post-good;
+    background: rgba(104, 211, 145, 0.05);
+  }
+  p:has(strong:contains("Poor Example")) + pre {
+    border-left: 4px solid $post-poor;
+    background: rgba(252, 129, 129, 0.05);
+  }
+  p:has(strong:contains("Example")) + pre {
+    border-left: 4px solid $post-example;
+    background: rgba(99, 179, 237, 0.05);
+  }
+
+  // Tables
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: $code-bg;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    th {
+      background: $pre-border;
+      color: $code-color;
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid $pre-border;
+      color: #cbd5e0;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  // Lists
+  ul {
+    margin: 1.5rem 0;
+    li {
+      margin-bottom: 0.75rem;
+      color: $p-color;
+
+      // Emoji bullets for tips: Use ::before for emoji bullets if desired
+      &::marker {
+        content: none;
+      }
+      position: relative;
+      padding-left: 0;
+    }
+  }
+
+  // Section dividers
+  hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $pre-border, transparent);
+    margin: 4rem 0;
+  }
+
+  // Footer/copyright
+  p:last-child {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid $pre-border;
+    color: #a0aec0;
+    font-size: 0.9em;
+  }
 }
 
-// Footer styles
+// Responsive
+@media (max-width: 768px) {
+  .post-content {
+    padding: 0 1rem;
+    font-size: 15px;
+
+    h2 {
+      font-size: 1.5em;
+      margin-top: 3rem;
+    }
+    h3 {
+      font-size: 1.2em;
+      margin-top: 2rem;
+    }
+    pre {
+      padding: 1rem;
+      font-size: 0.8em;
+      margin: 1.5rem 0;
+    }
+    table {
+      font-size: 0.85em;
+      th, td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+  }
+}
+
+// Dark theme (uses prefers-color-scheme)
+@media (prefers-color-scheme: dark) {
+  .post-content {
+    background: $pre-bg;
+    color: $code-color;
+  }
+}
+
+// Print styles
+@media print {
+  .post-content {
+    max-width: none;
+    color: #000;
+    background: #fff;
+
+    pre {
+      background: #f7fafc;
+      color: #000;
+      border: 1px solid #e2e8f0;
+    }
+  }
+}
+}
+
 .footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border);
     margin-top: 3rem;
     padding: 2rem;
-    
+
     .footer-content {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
         margin-bottom: 2rem;
     }
-    
+
     .footer-section {
         .footer-title {
             color: var(--accent);
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            
+
             &::before {
                 content: '> ';
                 color: var(--terminal-green);
             }
         }
     }
-    
+
     .social-links,
     .footer-links {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .social-link,
     .footer-link {
         color: var(--text-secondary);
@@ -506,45 +701,45 @@ body {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        
+
         &:hover {
             color: var(--accent);
         }
     }
-    
+
     .social-icon {
         color: var(--terminal-green);
     }
-    
+
     .system-info {
         .info-line {
             display: flex;
             justify-content: space-between;
             margin-bottom: 0.5rem;
             font-size: 0.9rem;
-            
+
             .info-label {
                 color: var(--text-secondary);
             }
-            
+
             .info-value {
                 color: var(--accent);
             }
         }
     }
-    
+
     .footer-bottom {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding-top: 1rem;
         border-top: 1px solid var(--border);
-        
+
         .copyright {
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
-        
+
         .terminal-prompt {
             .prompt {
                 color: var(--accent);
@@ -560,29 +755,29 @@ body {
     .terminal-window {
         margin: 1rem;
     }
-    
+
     .nav {
         flex-direction: column;
         align-items: center;
         gap: 1rem;
     }
-    
+
     .posts-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .header {
         padding: 2rem 1rem;
-        
+
         .site-title {
             font-size: 1.5rem;
         }
     }
-    
+
     .single-post .post-header .post-title {
         font-size: 2rem;
     }
-    
+
     .footer {
         .footer-bottom {
             flex-direction: column;
@@ -592,7 +787,6 @@ body {
     }
 }
 
-// Scrollbar styling
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -604,7 +798,7 @@ body {
 ::-webkit-scrollbar-thumb {
     background: var(--accent);
     border-radius: 4px;
-    
+
     &:hover {
         background: var(--accent-dark);
     }
