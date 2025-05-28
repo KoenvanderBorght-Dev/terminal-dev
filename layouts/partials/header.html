@@ -17,11 +17,11 @@
 
     <nav class="nav">
         <a href="{{ .Site.BaseURL }}" class="nav-item {{ if .IsHome }}active{{ end }}">~/home</a>
-        <a href="{{ " posts" | relURL }}" class="nav-item {{ if eq .Section " posts" }}active{{ end }}">~/blog</a>
-        <a href="{{ " projects" | relURL }}" class="nav-item {{ if eq .Section " projects" }}active{{ end
+        <a href="{{ "posts" | relURL }}" class="nav-item {{ if eq .Section " posts" }}active{{ end }}">~/blog</a>
+        <a href="{{ "projects" | relURL }}" class="nav-item {{ if eq .Section " projects" }}active{{ end
             }}">~/projects</a>
-        <a href="{{ " about" | relURL }}" class="nav-item {{ if eq .Section " about" }}active{{ end }}">~/about</a>
-        <a href="{{ " contact" | relURL }}" class="nav-item {{ if eq .Section " contact" }}active{{ end
+        <a href="{{ "about" | relURL }}" class="nav-item {{ if eq .Section " about" }}active{{ end }}">~/about</a>
+        <a href="{{ "contact" | relURL }}" class="nav-item {{ if eq .Section " contact" }}active{{ end
             }}">~/contact</a>
     </nav>
 </header>
