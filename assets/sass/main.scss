@@ -433,6 +433,15 @@ body {
             color: var(--text-primary);
         }
 
+        .post-subtitle {
+        font-style: italic;
+        font-size: 1.2em;
+        color: #666;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        font-weight: 300;
+    }
+
         .post-meta {
             justify-content: center;
             margin-bottom: 1rem;
