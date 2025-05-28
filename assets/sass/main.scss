@@ -1,40 +1,80 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-$bg-primary: #0a0a0a;
-$bg-secondary: #111111;
-$bg-card: #1a1a1a;
-$text-primary: #e4e4e7;
-$text-secondary: #a1a1aa;
-$accent: #60a5fa;
-$accent-dark: #3b82f6;
-$border: #27272a;
-$terminal-green: #22c55e;
-$terminal-yellow: #eab308;
-$terminal-red: #ef4444;
+$theme-dark: (
+  bg-primary: #0a0a0a,
+  bg-secondary: #111111,
+  bg-card: #1a1a1a,
+  bg-code: #2d3748,
+  text-primary: #e4e4e7,
+  text-secondary: #a1a1aa,
+  accent: #60a5fa,
+  accent-dark: #3b82f6,
+  border: #27272a,
+  terminal-green: #22c55e,
+  terminal-yellow: #eab308,
+  terminal-red: #ef4444,
+);
+
+$theme-light: (
+  bg-primary: #f8fafc,
+  bg-secondary: #f1f5f9,
+  bg-card: #fff,
+  bg-code: #64748b,
+  text-primary: #1a202c,
+  text-secondary: #64748b,
+  accent: #2563eb,
+  accent-dark: #1d4ed8,
+  border: #e2e8f0,
+  terminal-green: #16a34a,
+  terminal-yellow: #eab308,
+  terminal-red: #dc2626,
+);
+
+
 $h2-accent: var(--accent, #4a9eff);
 $h2-border: #2d3748;
 $h3-accent: #68d391;
 $p-color: var(--text-primary, #e2e8f0);
-$code-bg: #2d3748;
+
 $code-color: var(--text-primary, #e2e8f0);
 $pre-bg: #1a202c;
 $pre-border: #4a5568;
 
+
 $post-good: #68d391;
 $post-poor: #fc8181;
 $post-example: #63b3ed;
+@mixin theme-vars($theme-map) {
+  --bg-primary: #{map-get($theme-map, bg-primary)};
+  --bg-secondary: #{map-get($theme-map, bg-secondary)};
+  --bg-card: #{map-get($theme-map, bg-card)};
+  --bg-code: #{map-get($theme-map, bg-code)};
+  --text-primary: #{map-get($theme-map, text-primary)};
+  --text-secondary: #{map-get($theme-map, text-secondary)};
+  --accent: #{map-get($theme-map, accent)};
+  --accent-dark: #{map-get($theme-map, accent-dark)};
+  --border: #{map-get($theme-map, border)};
+  --terminal-green: #{map-get($theme-map, terminal-green)};
+  --terminal-yellow: #{map-get($theme-map, terminal-yellow)};
+  --terminal-red: #{map-get($theme-map, terminal-red)};
+}
+
+@media (prefers-color-scheme: light) {
+  html:not(.dark-mode):not(.light-mode) {
+    @include theme-vars($theme-light);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  html:not(.dark-mode):not(.light-mode) {
+    @include theme-vars($theme-dark);
+  }
+}
 
 :root {
-    --bg-primary: #{$bg-primary};
-    --bg-secondary: #{$bg-secondary};
-    --bg-card: #{$bg-card};
-    --text-primary: #{$text-primary};
-    --text-secondary: #{$text-secondary};
-    --accent: #{$accent};
-    --accent-dark: #{$accent-dark};
-    --border: #{$border};
-    --terminal-green: #{$terminal-green};
-    --terminal-yellow: #{$terminal-yellow};
-    --terminal-red: #{$terminal-red};
+  @include theme-vars($theme-dark);
+}
+
+html.light-mode {
+  @include theme-vars($theme-light);
 }
 
 $font-mono: 'JetBrains Mono', monospace;
@@ -302,6 +342,28 @@ body {
     gap: 1.5rem;
 }
 
+.theme-toggle-btn {
+  background: var(--bg-card);
+  color: var(--accent);
+  border: 1.5px solid var(--accent-dark);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.25em;
+  padding: 0.3em 0.7em;
+  margin-left: 1em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+
+  &:hover {
+    background: var(--accent-dark);
+    color: var(--bg-card);
+    border-color: var(--accent);
+    box-shadow: 0 3px 7px rgba(0,0,0,0.17);
+  }
+}
+
+
 .post-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
@@ -532,7 +594,7 @@ body {
     }
   }
   code {
-    background: $code-bg;
+    background: var(--bg-code);
     color: $code-color;
     padding: 0.25em 0.5em;
     border-radius: 6px;
@@ -559,7 +621,7 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin: 2rem 0;
-    background: $code-bg;
+    background: var(--bg-code);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
