@@ -6,8 +6,10 @@
         <h2 class="post-subtitle">{{ .Params.subtitle }}</h2>
         {{ end }}
         <div class="post-meta">
-            <span class="post-date">📅 {{ .Date.Format "January 2, 2006" }}</span>
-            <span class="post-reading-time">⏱️ {{ .ReadingTime }} min read</span>
+            {{ if ne .Date.Unix -62135596800 }}
+              <span class="post-date">📅 {{ .Date.Format "January 2, 2006" }}</span>
+              <span class="post-reading-time">⏱️ {{ .ReadingTime }} min read</span>
+            {{ end }}
             {{ if .Params.author }}
             <span class="post-author">👤 {{ .Params.author }}</span>
             {{ end }}

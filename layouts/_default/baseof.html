@@ -5,21 +5,22 @@
 </head>
 <body>
     <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-button btn-close"></div>
-            <div class="terminal-button btn-minimize"></div>
-            <div class="terminal-button btn-maximize"></div>
-            <div class="terminal-title">{{ .Site.Title | lower | replaceRE "\\s+" "" }}: ~/{{ .Section | default "home" }}</div>
-        </div>
-
+        <!--<div class="terminal-header">-->
+        <!--    <div class="terminal-button btn-close"></div>-->
+        <!--    <div class="terminal-button btn-minimize"></div>-->
+        <!--    <div class="terminal-button btn-maximize"></div>-->
+        <!--    <div class="terminal-title">{{ .Site.Title | lower | replaceRE "\\s+" "" }}: ~/{{ .Section | default "home" }}</div>-->
+        <!--</div>-->
+        <!---->
         {{ partial "header.html" . }}
 
         <main class="main-content">
             {{ block "main" . }}{{ end }}
 
-            {{ if .IsHome }}
-            {{ partial "status.html" . }}
-            {{ end }}
+            
+{{ if and .IsHome .Site.Params.ShowSystemStatus }}
+    {{ partial "status.html" . }}
+{{ end }}
         </main>
 
 

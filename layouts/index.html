@@ -4,7 +4,7 @@
     <div class="posts-grid">
         {{ $posts := where .Site.RegularPages "Section" "posts" }}
         {{ range first 6 $posts.ByDate.Reverse }}
-            {{ partial "_default/summary.html" . }}
+            {{ partial "summary.html" . }}
         {{ end }}
         
         {{ if eq (len $posts) 0 }}
